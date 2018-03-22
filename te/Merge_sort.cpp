@@ -39,8 +39,9 @@ vector<double>  Merge(vector<double> &left,vector<double>  &right){
     if(num>1){
         for (int i=0;i<num/2;i++)
         left.push_back(input[i]);
-        for (int i=num/2-1;i<num;i++)
+        for (int i=num/2;i<num;i++) //最开始i=num/2-1,错误，段错误！！！！！递归无法结束！！！！！
         right.push_back(input[i]);
+        //return right;
         left_order=MergeSort(left);
         right_order=MergeSort(right);
         return Merge(left_order,right_order);
@@ -52,22 +53,27 @@ vector<double>  Merge(vector<double> &left,vector<double>  &right){
 }
 
 int main(){
-    vector<double> disorder,order;
+    vector<double> disorder,order,ordertest;
     double element=0;
-    // cout<<"Input the number:"<<endl;
-    // while(cin>>element){
-    //     disorder.push_back(element);
-    // }
-    disorder={1,2,3,4,5,6,7,8,9,10,11};
+    cout<<"Input the number:"<<endl;
+    while(cin>>element){
+        disorder.push_back(element);
+    }
+    // disorder={1,2,3,4,5,6,7,8,9,10,3.5};
+    // vector<double> d2={1,2,4,6};
+    // vector<double> d1={9,7,8,9};
+    // ordertest=Merge(d1,d2);
     int num=disorder.size();
-    cout<<"disorder:";
+    cout<<num<<endl;
+    cout<<"disorder:"<<endl;
     for (int i=0;i<num;i++)
         cout<<disorder[i]<<" ";
-    cout<<endl;
     order=MergeSort(disorder);
-    // cout<<"order:";
-    // for (int i=0;i<num;i++)
-    //     cout<<order[i]<<" ";
-    // cout<<endl;
+    cout<<"order:";
+    int numl=order.size();
+    for (int i=0;i<numl;i++){
+        cout<<order[i]<<" ";
+    }   
+    cout<<endl;
     return 0;
 }
