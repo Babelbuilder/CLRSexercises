@@ -2,20 +2,31 @@
 using namespace std;
 #include<string>
 int lengthOfLastWord(const char *s) {
-    if(s==0)
+    int n=0,num=0;
+    if(s==0){
         return 0;
-    int num=0;
-    while((*s)!=EOF){
-        s++;
+        num=0;
+    }
+    else if(s!=0&&*s=='\0'){
+        return 0;
+        num=0;
+    }  
+    else{
+        while((*s)!='\0'){
+            s++;
+            num++;
+         }
     }
     s--;
-    while((*s)!=' '){
-        num++;
+    while((*s)!=' '&&num>0){
+        s--;
+        n++;
+        num--;
     }
-    return num;
+    return n; 
  }
 
  int main(){
-     char inputStr[]="Hello world";
-     cout<<lengthOfLastWord(inputStr);
+     const char *s="Hello world";
+     cout<<lengthOfLastWord(s);
  }
